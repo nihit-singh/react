@@ -73,8 +73,8 @@ function App() {
           
           {notesList.map((note, index) => (
             <div key={index} className='flex flex-col min-h-40 max-h-70 w-30 rounded-2xl bg-white p-4 shadow'>
-              <h3 className='text-black text-xl font-semibold mb-2 break-words'>{note.title}</h3>
-              <p className='text-gray-700 text-sm break-words overflow-y-auto '>{note.notes}</p>
+              <h3 className='text-black text-xl font-semibold mb-2 wrap-break-word'>{note.title}</h3>
+              <p className='text-gray-700 text-sm wrap-break-word overflow-y-auto '>{note.notes}</p>
               <button onClick={() => deleteNote(index)} className='mt-auto bg-red-500 text-white p-1 rounded-2xl'>Delete</button>
             </div>
           ))}
