@@ -25,6 +25,13 @@ function App() {
   setNotes("");
   }
 
+  const deleteNote = (indexToDelete) => {
+  setNotesList((prev) =>
+    prev.filter((_, index) => index !== indexToDelete)
+  );
+};
+
+
   const titleUpdateHandler = (e) => {
     setTitle(e.target.value);
   }
@@ -36,7 +43,7 @@ function App() {
 
   return (
     <div className='flex flex-row min-h-screen'>
-      <form onSubmit={submitHandler} className='flex flex-col w-1/2 gap-4 pt-10 px-10 lg:w-1/2'>
+      <form onSubmit={submitHandler} className='flex flex-col w-2/5 gap-4 pt-10 px-10 lg:w-1/2'>
           <span className='text-3xl font-bold mb-4 text-center'>Add Notes</span>
 
           <input onChange={titleUpdateHandler}
@@ -60,14 +67,15 @@ function App() {
         </button>
       </form>
 
-      <div className='w-1/2 mx-10 pt-10 lg:w-1/2 border-l-2 pl-10'>
+      <div className='w-3/5 mx-10 pt-10 lg:w-1/2 border-l-2 pl-10'>
         <h2 className='text-2xl font-bold'>Your Notes</h2>
         <div className='flex flex-wrap gap-4 shadow-md rounded p-4 mb-4 max-w-md mx-auto'>
           
           {notesList.map((note, index) => (
-            <div key={index} className='h-40 w-30 rounded-2xl bg-white p-4 shadow'>
-              <h3 className='text-black text-xl font-semibold mb-2'>{note.title}</h3>
-              <p className='text-gray-700'>{note.notes}</p>
+            <div key={index} className='flex flex-col min-h-40 max-h-70 w-30 rounded-2xl bg-white p-4 shadow'>
+              <h3 className='text-black text-xl font-semibold mb-2 break-words'>{note.title}</h3>
+              <p className='text-gray-700 text-sm break-words overflow-y-auto '>{note.notes}</p>
+              <button onClick={() => deleteNote(index)} className='mt-auto bg-red-500 text-white p-1 rounded-2xl'>Delete</button>
             </div>
           ))}
           
